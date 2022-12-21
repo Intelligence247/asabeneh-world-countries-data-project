@@ -1,0 +1,87 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    --bgcolor: #f0ebef;
+    --yellow: #f2a93b;
+    --border: #f4edec;
+
+}
+
+body {
+    height: auto;
+    width: 100vw;
+    overflow-x: hidden;
+}
+
+main {
+    height: auto;
+    width: 100vw;
+}
+
+header {
+    width: 100%;
+    padding-top: 1rem;
+    height: 6rem;
+    text-align: center;
+    background-color: var(--bgcolor);
+    color: var(--yellow);
+}
+
+header p:nth-child(2) {
+    color: black;
+}
+
+input {
+    width: 33rem;
+    border: 1px solid var(--border);
+    height: 2rem;
+    border-radius: 20px;
+    outline: 1px solid var(--border);
+    margin: 2rem auto;
+    display: block;
+    padding-left: 1.5rem;
+}
+
+button {
+    width: max-content;
+    border: none;
+    /* padding: 0rem 1rem; */
+    border-radius: 20px;
+    background-color: white;
+}
+
+.clickAbles {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+
+button:not(:last-of-type) {
+    background-color: #f2a93b;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.5rem;
+    height: 1.5rem;
+    width: 6rem;
+}
+
+button:not(:last-of-type) img {
+    width: 0.5rem;
+    height: 1rem;
+}
+
+#generate {
+    margin-top: 3rem;
+    width: 100%;
+    background-color: var(--bgcolor);
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    overflow-x: hidden;
+    padding: 1rem;
+}
