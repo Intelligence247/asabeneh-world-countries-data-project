@@ -1,5 +1,5 @@
-# asabeneh-world-countries-data-project
-*An implementation of asabeneh-animating-characters-project clone with html, css and JavaScript*
+# asabeneh-world-countries-project
+*An implementation of asabeneh-world-countries-project clone with html, css and JavaScript*
 ## Prequisite
 - Your browser version should be up to date for better experience
 ## Features
