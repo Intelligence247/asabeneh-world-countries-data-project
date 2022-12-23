@@ -2868,20 +2868,19 @@ const btnCapital = document.querySelector('#capital')
 const btnPopulation = document.querySelector('#population')
 const btnBar = document.querySelector('#bar')
 const input = document.querySelector('#input')
-
+const satisfaction = document.querySelector('#satisfaction')
 
 input.addEventListener('input', () => {
 
     generate.innerHTML = ''
-
+    let length = []
     for (const c of countries) {
         let sect = document.createElement('section')
         generate.appendChild(sect)
 
 
         // if starts here
-        if (c.name.toUpperCase().includes(input.value.toUpperCase())) {
-            console.log('correct')
+        if (c.name?.toUpperCase().includes(input.value.toUpperCase()) || c.languages?.join(' ').toUpperCase().includes(input.value.toUpperCase()) || c.capital?.toUpperCase().includes(input.value.toUpperCase())) {
             let img = document.createElement('img')
             let name = document.createElement('p')
             let capital = document.createElement('p')
@@ -2892,7 +2891,6 @@ input.addEventListener('input', () => {
             sect.appendChild(capital)
             sect.appendChild(languages)
             sect.appendChild(population)
-
 
             // img
             img.src = c.flag
@@ -2917,152 +2915,152 @@ input.addEventListener('input', () => {
             // population
             population.textContent = 'Population:' + ' ' + c.population
             //    sect 
-            console.log(input.value)
-            console.log(c.name)
+
             sect.style.width = '11.3rem'
-            sect.style.height = '15.5rem'
+            sect.style.height = 'auto'
             sect.style.backgroundColor = 'white'
             sect.style.padding = '1rem'
             sect.style.marginBlock = '0.3rem'
-
+            length.push(c)
         } else {
-            console.log('wrong')
+
             sect.innerHTML = ''
             sect.style.display = 'none'
         }
     }
+    satisfaction.textContent = length.length + ' ' + 'countries satisfied the search criteria'
 })
 
 
-input.addEventListener('input', () => {
+// input.addEventListener('input', () => {
 
-    generate.innerHTML = ''
+//     generate.innerHTML = ''
 
-    for (const c of countries) {
-        let sect = document.createElement('section')
-        generate.appendChild(sect)
-
-
-        // if starts here
-        if (c.capital.includes(input.value)) {
-            console.log('correct')
-            let img = document.createElement('img')
-            let name = document.createElement('p')
-            let capital = document.createElement('p')
-            let languages = document.createElement('p')
-            let population = document.createElement('p')
-            sect.appendChild(img)
-            sect.appendChild(name)
-            sect.appendChild(capital)
-            sect.appendChild(languages)
-            sect.appendChild(population)
+//     for (const c of countries) {
+//         let sect = document.createElement('section')
+//         generate.appendChild(sect)
 
 
-            // img
-            img.src = c.flag
-            img.style.width = '5rem'
-            img.style.height = '4rem'
-            img.style.display = 'block'
-            img.style.margin = 'auto'
-            img.style.border = '1px solid  #f0ebef'
-            // name
-            name.textContent = c.name.toUpperCase()
-            name.style.width = '10rem'
-            name.style.color = '#f2a93b'
-            name.style.margin = '1rem 0rem'
-            name.style.textAlign = 'center'
-
-            // capital
-            capital.textContent = 'Capital:' + ' ' + c.capital
-            languages.textContent = 'Languages:' + ' ' + c.languages.join(', ')
-            // languages
-            languages.style.maxWidth = '10rem'
-
-            // population
-            population.textContent = 'Population:' + ' ' + c.population
-            //    sect 
-            console.log(input.value)
-            console.log(c.name)
-            sect.style.width = '11.3rem'
-            sect.style.height = '15.5rem'
-            sect.style.backgroundColor = 'white'
-            sect.style.padding = '1rem'
-            sect.style.marginBlock = '0.3rem'
-
-        } else {
-            console.log('wrong')
-            sect.innerHTML = ''
-            sect.style.display = 'none'
-        }
-    }
-})
+// if starts here
+//         if (c.capital.includes(input.value)) {
+//             console.log('correct')
+//             let img = document.createElement('img')
+//             let name = document.createElement('p')
+//             let capital = document.createElement('p')
+//             let languages = document.createElement('p')
+//             let population = document.createElement('p')
+//             sect.appendChild(img)
+//             sect.appendChild(name)
+//             sect.appendChild(capital)
+//             sect.appendChild(languages)
+//             sect.appendChild(population)
 
 
+//             // img
+//             img.src = c.flag
+//             img.style.width = '5rem'
+//             img.style.height = '4rem'
+//             img.style.display = 'block'
+//             img.style.margin = 'auto'
+//             img.style.border = '1px solid  #f0ebef'
+//             // name
+//             name.textContent = c.name.toUpperCase()
+//             name.style.width = '10rem'
+//             name.style.color = '#f2a93b'
+//             name.style.margin = '1rem 0rem'
+//             name.style.textAlign = 'center'
+
+//             // capital
+//             capital.textContent = 'Capital:' + ' ' + c.capital
+//             languages.textContent = 'Languages:' + ' ' + c.languages.join(', ')
+//             // languages
+//             languages.style.maxWidth = '10rem'
+
+//             // population
+//             population.textContent = 'Population:' + ' ' + c.population
+//             //    sect
+//             console.log(input.value)
+//             console.log(c.name)
+//             sect.style.width = '11.3rem'
+//             sect.style.height = '15.5rem'
+//             sect.style.backgroundColor = 'white'
+//             sect.style.padding = '1rem'
+//             sect.style.marginBlock = '0.3rem'
+
+//         } else {
+//             console.log('wrong')
+//             sect.innerHTML = ''
+//             sect.style.display = 'none'
+//         }
+//     }
+// })
 
 
 
-input.addEventListener('input', () => {
-
-    generate.innerHTML = ''
-
-    for (const c of countries) {
-        let sect = document.createElement('section')
-        generate.appendChild(sect)
 
 
-        // if starts here
-        if (c.languages.join(' ').toUpperCase().includes(input.value.toUpperCase())) {
-            console.log('correct')
-            let img = document.createElement('img')
-            let name = document.createElement('p')
-            let capital = document.createElement('p')
-            let languages = document.createElement('p')
-            let population = document.createElement('p')
-            sect.appendChild(img)
-            sect.appendChild(name)
-            sect.appendChild(capital)
-            sect.appendChild(languages)
-            sect.appendChild(population)
+// input.addEventListener('input', () => {
+
+//     generate.innerHTML = ''
+
+//     for (const c of countries) {
+//         let sect = document.createElement('section')
+//         generate.appendChild(sect)
 
 
-            // img
-            img.src = c.flag
-            img.style.width = '5rem'
-            img.style.height = '4rem'
-            img.style.display = 'block'
-            img.style.margin = 'auto'
-            img.style.border = '1px solid  #f0ebef'
-            // name
-            name.textContent = c.name.toUpperCase()
-            name.style.width = '10rem'
-            name.style.color = '#f2a93b'
-            name.style.margin = '1rem 0rem'
-            name.style.textAlign = 'center'
+// if starts here
+//         if (c.languages.join(' ').toUpperCase().includes(input.value.toUpperCase())) {
+//             console.log('correct')
+//             let img = document.createElement('img')
+//             let name = document.createElement('p')
+//             let capital = document.createElement('p')
+//             let languages = document.createElement('p')
+//             let population = document.createElement('p')
+//             sect.appendChild(img)
+//             sect.appendChild(name)
+//             sect.appendChild(capital)
+//             sect.appendChild(languages)
+//             sect.appendChild(population)
 
-            // capital
-            capital.textContent = 'Capital:' + ' ' + c.capital
-            languages.textContent = 'Languages:' + ' ' + c.languages.join(', ')
-            // languages
-            languages.style.maxWidth = '10rem'
 
-            // population
-            population.textContent = 'Population:' + ' ' + c.population
-            //    sect 
-            console.log(input.value)
-            console.log(c.name)
-            sect.style.width = '11.3rem'
-            sect.style.height = '15.5rem'
-            sect.style.backgroundColor = 'white'
-            sect.style.padding = '1rem'
-            sect.style.marginBlock = '0.3rem'
+//             // img
+//             img.src = c.flag
+//             img.style.width = '5rem'
+//             img.style.height = '4rem'
+//             img.style.display = 'block'
+//             img.style.margin = 'auto'
+//             img.style.border = '1px solid  #f0ebef'
+//             // name
+//             name.textContent = c.name.toUpperCase()
+//             name.style.width = '10rem'
+//             name.style.color = '#f2a93b'
+//             name.style.margin = '1rem 0rem'
+//             name.style.textAlign = 'center'
 
-        } else {
-            console.log('wrong')
-            sect.innerHTML = ''
-            sect.style.display = 'none'
-        }
-    }
-})
+//             // capital
+//             capital.textContent = 'Capital:' + ' ' + c.capital
+//             languages.textContent = 'Languages:' + ' ' + c.languages.join(', ')
+//             // languages
+//             languages.style.maxWidth = '10rem'
+
+//             // population
+//             population.textContent = 'Population:' + ' ' + c.population
+//             //    sect
+//             console.log(input.value)
+//             console.log(c.name)
+//             sect.style.width = '11.3rem'
+//             sect.style.height = '15.5rem'
+//             sect.style.backgroundColor = 'white'
+//             sect.style.padding = '1rem'
+//             sect.style.marginBlock = '0.3rem'
+
+//         } else {
+//             console.log('wrong')
+//             sect.innerHTML = ''
+//             sect.style.display = 'none'
+//         }
+//     }
+// })
 
 
 
