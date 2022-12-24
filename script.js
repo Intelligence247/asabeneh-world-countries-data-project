@@ -3044,3 +3044,30 @@ btnName.addEventListener('click', () => {
 
 
 })
+
+let lang = []
+countries.map((n) => {
+    for (const c of n.languages) {
+        const langExist = lang.find((d) => d.country === c)
+        const langIndex = lang.findIndex((d) => d.country === c)
+        if (langExist) {
+            lang.splice(langIndex, 1, { ...langExist, count: langExist.count + 1 })
+        } else {
+            lang.push({ country: c, count: 1 })
+        }
+    }
+})
+const generate2 = document.querySelector('#generate2')
+lang.sort((a, b) => {
+    if (a.count > b.count) return -1
+    if (a.count < b.count) return 1
+    return 0
+})
+let tenlang = lang.slice(0, 10)
+console.log(tenlang)
+
+for (let i = 0; i < tenlang.length; i++) {
+    generate2.innerHTML += `<div class="each"><p>${tenlang[i].country}</p>
+<p class="center" style="width:${tenlang[i].count / 2}vw;"></p>
+<p>${tenlang[i].count}</p></div>`
+}
