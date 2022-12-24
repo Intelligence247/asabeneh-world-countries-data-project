@@ -130,7 +130,7 @@ input {
 }
 
 #generate2 p {
-    height: 2rem;
+    min-height: 2rem;
     display: flex;
 
 }
@@ -146,7 +146,7 @@ input {
 }
 
 .each {
-    height: 2rem;
+    min-height: 2rem;
     display: flex;
     width: 100%;
     gap: 1rem;

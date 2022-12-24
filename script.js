@@ -2870,8 +2870,16 @@ const btnBar = document.querySelector('#bar')
 const input = document.querySelector('#input')
 const satisfaction = document.querySelector('#satisfaction')
 const imgname = document.querySelector('#imgname')
-
-
+const generate2 = document.querySelector('#generate2')
+let world = 0
+for (const c of countries) {
+    world += c.population
+}
+let worldObj = {
+    name: 'World',
+    population: world
+}
+console.log(worldObj.name)
 for (const c of countries) {
     imgname.src = ''
     imgname.src = './media/down (1).png'
@@ -2929,6 +2937,7 @@ let ccc = []
 input.addEventListener('input', () => {
     generate.innerHTML = ''
     let length = []
+    generate2.innerHTML = ''
     for (const c of countries) {
         let sect = document.createElement('section')
         generate.appendChild(sect)
@@ -2978,11 +2987,26 @@ input.addEventListener('input', () => {
             sect.style.marginBlock = '0.3rem'
             length.push(c)
             satisfaction.textContent = length.length + ' ' + 'countries satisfied the search criteria'
-        } else {
+            generate2.innerHTML += `<div class="each" >
+            <p>${c.name?.toUpperCase()}</p>
+            <aside class="right">
+                <p class="center" style="width:${c.population / 129000000}vw"></p>
+                <p>${c.population}</p>
+            </aside>
+            </div>`
 
+        } else {
+            // generate2.innerHTML = `  <div class="each" >
+            // <p>${c.name}</p>
+            // <aside class="right">
+            //     <p class="center" style="width:${c.population / 129000000}vw"></p>
+            //     <p>${c.population}</p>
+            // </aside>
+            // </div>`
             sect.innerHTML = ''
             sect.style.display = 'none'
         }
+
     }
 
 })
@@ -3057,7 +3081,6 @@ countries.map((n) => {
         }
     }
 })
-const generate2 = document.querySelector('#generate2')
 lang.sort((a, b) => {
     if (a.count > b.count) return -1
     if (a.count < b.count) return 1
@@ -3079,14 +3102,7 @@ tenlangBtn.addEventListener('click', () => {
         </div>`
     }
 })
-let world = 0
-for (const c of countries) {
-    world += c.population
-}
-let worldObj = {
-    name: 'World',
-    population: world
-}
+
 const popSort = countries.sort((a, b) => {
     if (a.population > b.population) return -1
     if (a.population < b.population) return 1
@@ -3119,3 +3135,13 @@ tenpopBtn.addEventListener('click', () => {
         console.log(t.population / 95000000)
     }
 })
+// for (const c of countries) {
+
+    // generate2.innerHTML += `  <div class="each" >
+    //     <p>${c.name}</p>
+    //     <aside class="right">
+    //         <p class="center" style="width:${c.population / 129000000}vw"></p>
+    //         <p>${c.population}</p>
+    //     </aside>
+    //     </div>`
+// }
