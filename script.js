@@ -3065,9 +3065,57 @@ lang.sort((a, b) => {
 })
 let tenlang = lang.slice(0, 10)
 console.log(tenlang)
-
-for (let i = 0; i < tenlang.length; i++) {
-    generate2.innerHTML += `<div class="each"><p>${tenlang[i].country}</p>
-<p class="center" style="width:${tenlang[i].count / 2}vw;"></p>
-<p>${tenlang[i].count}</p></div>`
+const tenpopBtn = document.querySelector('#tenpop')
+const tenlangBtn = document.querySelector('#tenlang')
+tenlangBtn.addEventListener('click', () => {
+    generate2.innerHTML = ''
+    for (let i = 0; i < tenlang.length; i++) {
+        generate2.innerHTML += `  <div class="each" >
+        <p>${tenlang[i].country}</p>
+        <aside class="right">
+            <p class="center" style="width:${tenlang[i].count / 1.5}vw"></p>
+            <p>${tenlang[i].count}</p>
+        </aside>
+        </div>`
+    }
+})
+let world = 0
+for (const c of countries) {
+    world += c.population
 }
+let worldObj = {
+    name: 'World',
+    population: world
+}
+const popSort = countries.sort((a, b) => {
+    if (a.population > b.population) return -1
+    if (a.population < b.population) return 1
+    return 0
+})
+
+const tenPopSort = popSort.slice(0, 10)
+tenPopSort.unshift(worldObj)
+
+for (const t of tenPopSort) {
+    generate2.innerHTML += `  <div class="each" >
+        <p>${t.name}</p>
+        <aside class="right">
+            <p class="center" style="width:${t.population / 129000000}vw"></p>
+            <p>${t.population}</p>
+        </aside>
+        </div>`
+    console.log(t.population / 95000000)
+}
+tenpopBtn.addEventListener('click', () => {
+    generate2.innerHTML = ''
+    for (const t of tenPopSort) {
+        generate2.innerHTML += `  <div class="each" >
+            <p>${t.name}</p>
+            <aside class="right">
+                <p class="center" style="width:${t.population / 129000000}vw"></p>
+                <p>${t.population}</p>
+            </aside>
+            </div>`
+        console.log(t.population / 95000000)
+    }
+})

@@ -114,20 +114,18 @@ input {
     background-color: #f2a93b;
     border: none;
     padding: 0.5rem 1rem;
+    margin-left: 1rem;
 
 }
 
-.poplang {
-    display: flex;
-    display: inline-block;
-}
+
 
 #generate2 {
     padding: 2rem 0rem;
     display: flex;
-    width: 65vw;
+    width: 78vw;
     margin: auto;
-    gap: 2rem;
+    gap: 0.7rem;
     flex-direction: column;
 }
 
@@ -137,23 +135,36 @@ input {
 
 }
 
-#generate2 p:not(p:nth-child(2)) {
+.each p:first-child,
+.right p:last-child {
     width: 7rem;
 }
 
-#generate2 p:nth-child(2) {
+.right p:first-child {
     background-color: var(--yellow);
 
 }
 
-
-
 .each {
     height: 2rem;
     display: flex;
-    /* justify-content: space-between; */
+    width: 100%;
+    gap: 1rem;
 }
 
-aside {
+.right {
     display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.each p {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+}
+
+.right p:last-child {
+    justify-content: flex-end;
 }
