@@ -2869,9 +2869,64 @@ const btnPopulation = document.querySelector('#population')
 const btnBar = document.querySelector('#bar')
 const input = document.querySelector('#input')
 const satisfaction = document.querySelector('#satisfaction')
+const imgname = document.querySelector('#imgname')
 
+
+for (const c of countries) {
+    imgname.src = ''
+    imgname.src = './media/down (1).png'
+
+    let sect = document.createElement('section')
+    generate.appendChild(sect)
+
+    let img = document.createElement('img')
+    let name = document.createElement('p')
+    let capital = document.createElement('p')
+    let languages = document.createElement('p')
+    let population = document.createElement('p')
+    sect.appendChild(img)
+    sect.appendChild(name)
+    sect.appendChild(capital)
+    sect.appendChild(languages)
+    sect.appendChild(population)
+
+    // img
+    img.src = c.flag
+    img.style.width = '5rem'
+    img.style.height = '4rem'
+    img.style.display = 'block'
+    img.style.margin = 'auto'
+    img.style.border = '1px solid  #f0ebef'
+    // name
+    name.textContent = c.name.toUpperCase()
+    name.style.width = '10rem'
+    name.style.color = '#f2a93b'
+    name.style.margin = '1rem 0rem'
+    name.style.textAlign = 'center'
+
+    // capital
+    capital.textContent = 'Capital:' + ' ' + c.capital
+    languages.textContent = 'Languages:' + ' ' + c.languages.join(', ')
+    // languages
+    languages.style.maxWidth = '10rem'
+
+    // population
+    population.textContent = 'Population:' + ' ' + c.population
+    //    sect 
+
+    sect.style.width = '11.3rem'
+    sect.style.height = 'auto'
+    sect.style.backgroundColor = 'white'
+    sect.style.padding = '1rem'
+    sect.style.marginBlock = '0.3rem'
+
+
+}
+
+
+// Inputs starts here
+let ccc = []
 input.addEventListener('input', () => {
-
     generate.innerHTML = ''
     let length = []
     for (const c of countries) {
@@ -2891,7 +2946,7 @@ input.addEventListener('input', () => {
             sect.appendChild(capital)
             sect.appendChild(languages)
             sect.appendChild(population)
-
+            ccc.push(c)
             // img
             img.src = c.flag
             img.style.width = '5rem'
@@ -2922,152 +2977,70 @@ input.addEventListener('input', () => {
             sect.style.padding = '1rem'
             sect.style.marginBlock = '0.3rem'
             length.push(c)
+            satisfaction.textContent = length.length + ' ' + 'countries satisfied the search criteria'
         } else {
 
             sect.innerHTML = ''
             sect.style.display = 'none'
         }
     }
-    satisfaction.textContent = length.length + ' ' + 'countries satisfied the search criteria'
+
 })
 
 
-// input.addEventListener('input', () => {
 
-//     generate.innerHTML = ''
+// Name event starts here
+console.log(ccc)
+btnName.addEventListener('click', () => {
 
-//     for (const c of countries) {
-//         let sect = document.createElement('section')
-//         generate.appendChild(sect)
+    generate.innerHTML = ''
+    imgname.src = ''
+    imgname.src = './media/up.png'
 
+    for (const c of countries.reverse()) {
+        let sect = document.createElement('section')
+        generate.appendChild(sect)
+        let img = document.createElement('img')
+        let name = document.createElement('p')
+        let capital = document.createElement('p')
+        let languages = document.createElement('p')
+        let population = document.createElement('p')
+        sect.appendChild(img)
+        sect.appendChild(name)
+        sect.appendChild(capital)
+        sect.appendChild(languages)
+        sect.appendChild(population)
 
-// if starts here
-//         if (c.capital.includes(input.value)) {
-//             console.log('correct')
-//             let img = document.createElement('img')
-//             let name = document.createElement('p')
-//             let capital = document.createElement('p')
-//             let languages = document.createElement('p')
-//             let population = document.createElement('p')
-//             sect.appendChild(img)
-//             sect.appendChild(name)
-//             sect.appendChild(capital)
-//             sect.appendChild(languages)
-//             sect.appendChild(population)
+        // img
+        img.src = c.flag
+        img.style.width = '5rem'
+        img.style.height = '4rem'
+        img.style.display = 'block'
+        img.style.margin = 'auto'
+        img.style.border = '1px solid  #f0ebef'
+        // name
+        name.textContent = c.name.toUpperCase()
+        name.style.width = '10rem'
+        name.style.color = '#f2a93b'
+        name.style.margin = '1rem 0rem'
+        name.style.textAlign = 'center'
 
+        // capital
+        capital.textContent = 'Capital:' + ' ' + c.capital
+        languages.textContent = 'Languages:' + ' ' + c.languages.join(', ')
+        // languages
+        languages.style.maxWidth = '10rem'
 
-//             // img
-//             img.src = c.flag
-//             img.style.width = '5rem'
-//             img.style.height = '4rem'
-//             img.style.display = 'block'
-//             img.style.margin = 'auto'
-//             img.style.border = '1px solid  #f0ebef'
-//             // name
-//             name.textContent = c.name.toUpperCase()
-//             name.style.width = '10rem'
-//             name.style.color = '#f2a93b'
-//             name.style.margin = '1rem 0rem'
-//             name.style.textAlign = 'center'
+        // population
+        population.textContent = 'Population:' + ' ' + c.population
+        //    sect 
 
-//             // capital
-//             capital.textContent = 'Capital:' + ' ' + c.capital
-//             languages.textContent = 'Languages:' + ' ' + c.languages.join(', ')
-//             // languages
-//             languages.style.maxWidth = '10rem'
-
-//             // population
-//             population.textContent = 'Population:' + ' ' + c.population
-//             //    sect
-//             console.log(input.value)
-//             console.log(c.name)
-//             sect.style.width = '11.3rem'
-//             sect.style.height = '15.5rem'
-//             sect.style.backgroundColor = 'white'
-//             sect.style.padding = '1rem'
-//             sect.style.marginBlock = '0.3rem'
-
-//         } else {
-//             console.log('wrong')
-//             sect.innerHTML = ''
-//             sect.style.display = 'none'
-//         }
-//     }
-// })
+        sect.style.width = '11.3rem'
+        sect.style.height = 'auto'
+        sect.style.backgroundColor = 'white'
+        sect.style.padding = '1rem'
+        sect.style.marginBlock = '0.3rem'
+    }
 
 
-
-
-
-// input.addEventListener('input', () => {
-
-//     generate.innerHTML = ''
-
-//     for (const c of countries) {
-//         let sect = document.createElement('section')
-//         generate.appendChild(sect)
-
-
-// if starts here
-//         if (c.languages.join(' ').toUpperCase().includes(input.value.toUpperCase())) {
-//             console.log('correct')
-//             let img = document.createElement('img')
-//             let name = document.createElement('p')
-//             let capital = document.createElement('p')
-//             let languages = document.createElement('p')
-//             let population = document.createElement('p')
-//             sect.appendChild(img)
-//             sect.appendChild(name)
-//             sect.appendChild(capital)
-//             sect.appendChild(languages)
-//             sect.appendChild(population)
-
-
-//             // img
-//             img.src = c.flag
-//             img.style.width = '5rem'
-//             img.style.height = '4rem'
-//             img.style.display = 'block'
-//             img.style.margin = 'auto'
-//             img.style.border = '1px solid  #f0ebef'
-//             // name
-//             name.textContent = c.name.toUpperCase()
-//             name.style.width = '10rem'
-//             name.style.color = '#f2a93b'
-//             name.style.margin = '1rem 0rem'
-//             name.style.textAlign = 'center'
-
-//             // capital
-//             capital.textContent = 'Capital:' + ' ' + c.capital
-//             languages.textContent = 'Languages:' + ' ' + c.languages.join(', ')
-//             // languages
-//             languages.style.maxWidth = '10rem'
-
-//             // population
-//             population.textContent = 'Population:' + ' ' + c.population
-//             //    sect
-//             console.log(input.value)
-//             console.log(c.name)
-//             sect.style.width = '11.3rem'
-//             sect.style.height = '15.5rem'
-//             sect.style.backgroundColor = 'white'
-//             sect.style.padding = '1rem'
-//             sect.style.marginBlock = '0.3rem'
-
-//         } else {
-//             console.log('wrong')
-//             sect.innerHTML = ''
-//             sect.style.display = 'none'
-//         }
-//     }
-// })
-
-
-
-
-
-
-
-
-
-
+})
