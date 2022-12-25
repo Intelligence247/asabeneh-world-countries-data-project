@@ -62,6 +62,22 @@ input {
     gap: 2rem;
 }
 
+#population {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.5rem;
+    height: 1.5rem;
+    width: 6rem;
+    background-color: #f2a93b;
+}
+
+#population img {
+    width: 0.5rem;
+    height: 1rem;
+}
+
 .clickAbles button:not(:last-of-type) {
     background-color: #f2a93b;
     display: flex;
@@ -167,4 +183,62 @@ input {
 
 .right p:last-child {
     justify-content: flex-end;
+}
+
+footer {
+    display: grid;
+    width: 100vw;
+    grid-template-columns: 40vw 1fr;
+    height: 6.5rem;
+    background-color: var(--border);
+    margin-top: 1rem;
+}
+
+.copyright {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    flex-direction: column;
+    width: 15rem;
+    font-size: 14px;
+    gap: 1rem;
+    color: #333333;
+}
+
+.copyright img {
+    border-radius: 3px;
+    padding: 1px;
+}
+
+.socials {
+    display: flex;
+    justify-content: space-between;
+}
+
+.copyright img:nth-child(2) {
+    background-color: #0077b5;
+}
+
+.copyright img:last-child {
+    background-color: #1da1f2;
+}
+
+.copyright img:first-child {
+    background-color: #333333;
+}
+
+.socilsimg {
+    display: flex;
+    justify-content: space-between;
+    padding: 0rem 1rem;
+
+
+}
+
+#upimg {
+    background-color: var(--yellow);
+    margin-right: 2rem;
+    border-radius: 50%;
+    padding: 3px;
+    margin-top: 3.3rem;
 }

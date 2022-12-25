@@ -2937,7 +2937,13 @@ let ccc = []
 input.addEventListener('input', () => {
     generate.innerHTML = ''
     let length = []
-    generate2.innerHTML = ''
+    generate2.innerHTML = `  <div class="each" >
+    <p>${worldObj.name}</p>
+    <aside class="right">
+        <p class="center" style="width:${worldObj.population / 129000000}vw"></p>
+        <p>${worldObj.population}</p>
+    </aside>
+    </div>`
     for (const c of countries) {
         let sect = document.createElement('section')
         generate.appendChild(sect)
@@ -2986,9 +2992,8 @@ input.addEventListener('input', () => {
             sect.style.padding = '1rem'
             sect.style.marginBlock = '0.3rem'
             length.push(c)
-            satisfaction.textContent = length.length + ' ' + 'countries satisfied the search criteria'
             generate2.innerHTML += `<div class="each" >
-            <p>${c.name?.toUpperCase()}</p>
+            <p>${c.name}</p>
             <aside class="right">
                 <p class="center" style="width:${c.population / 129000000}vw"></p>
                 <p>${c.population}</p>
@@ -2996,18 +3001,13 @@ input.addEventListener('input', () => {
             </div>`
 
         } else {
-            // generate2.innerHTML = `  <div class="each" >
-            // <p>${c.name}</p>
-            // <aside class="right">
-            //     <p class="center" style="width:${c.population / 129000000}vw"></p>
-            //     <p>${c.population}</p>
-            // </aside>
-            // </div>`
+
             sect.innerHTML = ''
             sect.style.display = 'none'
         }
 
     }
+    satisfaction.textContent = length.length + ' ' + 'countries satisfied the search criteria'
 
 })
 
@@ -3091,6 +3091,7 @@ console.log(tenlang)
 const tenpopBtn = document.querySelector('#tenpop')
 const tenlangBtn = document.querySelector('#tenlang')
 tenlangBtn.addEventListener('click', () => {
+
     generate2.innerHTML = ''
     for (let i = 0; i < tenlang.length; i++) {
         generate2.innerHTML += `  <div class="each" >
@@ -3110,8 +3111,14 @@ const popSort = countries.sort((a, b) => {
 })
 
 const tenPopSort = popSort.slice(0, 10)
-tenPopSort.unshift(worldObj)
-
+// tenPopSort.unshift(worldObj)
+generate2.innerHTML = `  <div class="each" >
+        <p>${worldObj.name}</p>
+        <aside class="right">
+            <p class="center" style="width:${worldObj.population / 129000000}vw"></p>
+            <p>${worldObj.population}</p>
+        </aside>
+        </div>`
 for (const t of tenPopSort) {
     generate2.innerHTML += `  <div class="each" >
         <p>${t.name}</p>
@@ -3124,6 +3131,13 @@ for (const t of tenPopSort) {
 }
 tenpopBtn.addEventListener('click', () => {
     generate2.innerHTML = ''
+    generate2.innerHTML = `  <div class="each" >
+        <p>${worldObj.name}</p>
+        <aside class="right">
+            <p class="center" style="width:${worldObj.population / 129000000}vw"></p>
+            <p>${worldObj.population}</p>
+        </aside>
+        </div>`
     for (const t of tenPopSort) {
         generate2.innerHTML += `  <div class="each" >
             <p>${t.name}</p>
@@ -3135,13 +3149,3 @@ tenpopBtn.addEventListener('click', () => {
         console.log(t.population / 95000000)
     }
 })
-// for (const c of countries) {
-
-    // generate2.innerHTML += `  <div class="each" >
-    //     <p>${c.name}</p>
-    //     <aside class="right">
-    //         <p class="center" style="width:${c.population / 129000000}vw"></p>
-    //         <p>${c.population}</p>
-    //     </aside>
-    //     </div>`
-// }
