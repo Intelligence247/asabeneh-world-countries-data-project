@@ -5,13 +5,18 @@
     --bgcolor: #f0ebef;
     --yellow: #f2a93b;
     --border: #f4edec;
-
+    scroll-behavior: smooth;
+    transition: all 1s linear;
 }
 
 body {
     height: auto;
     width: 100vw;
     overflow-x: hidden;
+}
+
+button {
+    cursor: pointer;
 }
 
 main {

@@ -1,4 +1,4 @@
-const countries_data = [
+const countries = [
     {
         "name": "Afghanistan",
         "capital": "Kabul",
@@ -2862,8 +2862,7 @@ const countries_data = [
         "area": 390757
     }
 ]
-const countries = countries_data.sort((a, b) => a.name.localeCompare(b.name))
-console.log(countries)
+
 const generate = document.querySelector('#generate')
 const btnName = document.querySelector('#name')
 const btnCapital = document.querySelector('#capital')
@@ -2873,6 +2872,7 @@ const input = document.querySelector('#input')
 const satisfaction = document.querySelector('#satisfaction')
 const imgname = document.querySelector('#imgname')
 const generate2 = document.querySelector('#generate2')
+const imgpopulation = document.querySelector('#imgpopulation')
 let world = 0
 for (const c of countries) {
     world += c.population
@@ -2921,7 +2921,7 @@ for (const c of countries) {
     languages.style.maxWidth = '10rem'
 
     // population
-    population.textContent = 'Population:' + ' ' + c.population
+    population.textContent = 'Population:' + ' ' + c.population.toLocaleString()
     //    sect 
 
     sect.style.width = '11.3rem'
@@ -2945,7 +2945,7 @@ input.addEventListener('input', () => {
     <p>${worldObj.name}</p>
     <aside class="right">
         <p class="center" style="width:${worldObj.population / 129000000}vw"></p>
-        <p>${worldObj.population}</p>
+        <p>${worldObj.population.toLocaleString()}</p>
     </aside>
     </div>`
 
@@ -2983,13 +2983,16 @@ input.addEventListener('input', () => {
             name.style.textAlign = 'center'
 
             // capital
-            capital.textContent = 'Capital:' + ' ' + c.capital
+            if (c.capital?.length > 0) {
+                capital.textContent = 'Capital:' + ' ' + c.capital
+            } else {
+                capital.textContent = ''
+            }
             languages.textContent = 'Languages:' + ' ' + c.languages.join(', ')
             // languages
             languages.style.maxWidth = '10rem'
-
             // population
-            population.textContent = 'Population:' + ' ' + c.population
+            population.textContent = 'Population:' + ' ' + c.population.toLocaleString()
             //    sect 
             console.log(input.value.length)
             sect.style.width = '11.3rem'
@@ -3002,7 +3005,7 @@ input.addEventListener('input', () => {
             <p>${c.name}</p>
             <aside class="right">
                 <p class="center" style="width:${c.population / 129000000}vw"></p>
-                <p>${c.population}</p>
+                <p>${c.population.toLocaleString()}</p>
             </aside>
             </div>`
 
@@ -3011,85 +3014,207 @@ input.addEventListener('input', () => {
             sect.style.display = 'none'
         }
 
-        ccc = arr.sort((a, b) => b.name.localeCompare(a.name))
+        // ccc = arr.sort((a, b) => b.name.localeCompare(a.name))
 
 
-        btnName.addEventListener('click', () => {
-
-            generate.innerHTML = ''
-            imgname.src = ''
-            imgname.src = './media/up.png'
-
-            for (const c of ccc) {
-                let sect = document.createElement('section')
-                generate.appendChild(sect)
-                let img = document.createElement('img')
-                let name = document.createElement('p')
-                let capital = document.createElement('p')
-                let languages = document.createElement('p')
-                let population = document.createElement('p')
-                sect.appendChild(img)
-                sect.appendChild(name)
-                sect.appendChild(capital)
-                sect.appendChild(languages)
-                sect.appendChild(population)
-
-                // img
-                img.src = c.flag
-                img.style.width = '5rem'
-                img.style.height = '4rem'
-                img.style.display = 'block'
-                img.style.margin = 'auto'
-                img.style.border = '1px solid  #f0ebef'
-                // name
-                name.textContent = c.name?.toUpperCase()
-                name.style.width = '10rem'
-                name.style.color = '#f2a93b'
-                name.style.margin = '1rem 0rem'
-                name.style.textAlign = 'center'
-
-                // capital
-                capital.textContent = 'Capital:' + ' ' + c.capital
-                languages.textContent = 'Languages:' + ' ' + c.languages.join(', ')
-                // languages
-                languages.style.maxWidth = '10rem'
-
-                // population
-                population.textContent = 'Population:' + ' ' + c.population
-                //    sect 
-
-                sect.style.width = '11.3rem'
-                sect.style.height = 'auto'
-                sect.style.backgroundColor = 'white'
-                sect.style.padding = '1rem'
-                sect.style.marginBlock = '0.3rem'
-            }
-
-
-        })
 
 
     }
+    console.log(arr)
     satisfaction.textContent = length.length + ' ' + 'countries satisfied the search criteria'
     discription.textContent = 'World Population'
+    btnName.addEventListener('click', () => {
+
+        generate.innerHTML = ''
+        imgname.src = ''
+        imgname.src = './media/up.png'
+
+        for (const c of arr.reverse()) {
+            let sect = document.createElement('section')
+            generate.appendChild(sect)
+            let img = document.createElement('img')
+            let name = document.createElement('p')
+            let capital = document.createElement('p')
+            let languages = document.createElement('p')
+            let population = document.createElement('p')
+            sect.appendChild(img)
+            sect.appendChild(name)
+            sect.appendChild(capital)
+            sect.appendChild(languages)
+            sect.appendChild(population)
+
+            // img
+            img.src = c.flag
+            img.style.width = '5rem'
+            img.style.height = '4rem'
+            img.style.display = 'block'
+            img.style.margin = 'auto'
+            img.style.border = '1px solid  #f0ebef'
+            // name
+            name.textContent = c.name?.toUpperCase()
+            name.style.width = '10rem'
+            name.style.color = '#f2a93b'
+            name.style.margin = '1rem 0rem'
+            name.style.textAlign = 'center'
+
+            // capital
+            if (c.capital?.length > 1) {
+                capital.textContent = 'Capital:' + ' ' + c.capital
+
+            } else {
+                capital.textContent = ''
+            }
+            languages.textContent = 'Languages:' + ' ' + c.languages.join(', ')
+            // languages
+            languages.style.maxWidth = '10rem'
+
+            // population
+            population.textContent = 'Population:' + ' ' + c.population.toLocaleString()
+            //    sect 
+
+            sect.style.width = '11.3rem'
+            sect.style.height = 'auto'
+            sect.style.backgroundColor = 'white'
+            sect.style.padding = '1rem'
+            sect.style.marginBlock = '0.3rem'
+        }
+    })
 
 
+    // btnCapital starts here at the input
+
+    btnCapital.addEventListener('click', () => {
+
+        generate.innerHTML = ''
+        imgname.src = ''
+        imgcapital.src = './media/up.png'
+        arr.sort((a, b) => {
+            if (a.capital > b.capital) return -1
+            if (a.capital < b.capital) return 1
+            return 0
+        })
+        for (const c of arr) {
+            let sect = document.createElement('section')
+            generate.appendChild(sect)
+            let img = document.createElement('img')
+            let name = document.createElement('p')
+            let capital = document.createElement('p')
+            let languages = document.createElement('p')
+            let population = document.createElement('p')
+            sect.appendChild(img)
+            sect.appendChild(name)
+            sect.appendChild(capital)
+            sect.appendChild(languages)
+            sect.appendChild(population)
+
+            // img
+            img.src = c.flag
+            img.style.width = '5rem'
+            img.style.height = '4rem'
+            img.style.display = 'block'
+            img.style.margin = 'auto'
+            img.style.border = '1px solid  #f0ebef'
+            // name
+            name.textContent = c.name?.toUpperCase()
+            name.style.width = '10rem'
+            name.style.color = '#f2a93b'
+            name.style.margin = '1rem 0rem'
+            name.style.textAlign = 'center'
+
+            // capital
+            if (c.capital?.length > 1) {
+                capital.textContent = 'Capital:' + ' ' + c.capital
+
+            } else {
+                capital.textContent = ''
+            }
+            languages.textContent = 'Languages:' + ' ' + c.languages.join(', ')
+            // languages
+            languages.style.maxWidth = '10rem'
+
+            // population
+            population.textContent = 'Population:' + ' ' + c.population.toLocaleString()
+            //    sect 
+
+            sect.style.width = '11.3rem'
+            sect.style.height = 'auto'
+            sect.style.backgroundColor = 'white'
+            sect.style.padding = '1rem'
+            sect.style.marginBlock = '0.3rem'
+        }
+    })
+
+    // btnPopulation starts here at the input
+
+    btnPopulation.addEventListener('click', () => {
+        generate.innerHTML = ''
+        imgpopulation.src = './media/up.png'
+        let arrsort = arr.sort((a, b) => {
+            if (a.population > b.population) return 1
+            if (a.population < b.population) return -1
+            return 0
+        })
+        for (const c of arrsort) {
+            let sect = document.createElement('section')
+            generate.appendChild(sect)
+            let img = document.createElement('img')
+            let name = document.createElement('p')
+            let capital = document.createElement('p')
+            let languages = document.createElement('p')
+            let population = document.createElement('p')
+            sect.appendChild(img)
+            sect.appendChild(name)
+            sect.appendChild(capital)
+            sect.appendChild(languages)
+            sect.appendChild(population)
+
+            // img
+            img.src = c.flag
+            img.style.width = '5rem'
+            img.style.height = '4rem'
+            img.style.display = 'block'
+            img.style.margin = 'auto'
+            img.style.border = '1px solid  #f0ebef'
+            // name
+            name.textContent = c.name?.toUpperCase()
+            name.style.width = '10rem'
+            name.style.color = '#f2a93b'
+            name.style.margin = '1rem 0rem'
+            name.style.textAlign = 'center'
+
+            // capital
+            if (c.capital?.length > 1) {
+                capital.textContent = 'Capital:' + ' ' + c.capital
+
+            } else {
+                capital.textContent = ''
+            }
+            languages.textContent = 'Languages:' + ' ' + c.languages.join(', ')
+            // languages
+            languages.style.maxWidth = '10rem'
+
+            // population
+            population.textContent = 'Population:' + ' ' + c.population.toLocaleString()
+            //    sect 
+
+            sect.style.width = '11.3rem'
+            sect.style.height = 'auto'
+            sect.style.backgroundColor = 'white'
+            sect.style.padding = '1rem'
+            sect.style.marginBlock = '0.3rem'
+        }
+    })
 })
 
 
-console.log(ccc)
 // Name event starts here
 
-
 btnName.addEventListener('click', () => {
-
     generate.innerHTML = ''
-    imgname.src = ''
     imgname.src = './media/up.png'
-    const reversedCountries = countries_data.sort((a, b) => b.name.localeCompare(a.name))
 
-
-    for (const c of reversedCountries) {
+    countries.sort((a, b) => b.name.localeCompare(a.name))
+    for (const c of countries) {
         let sect = document.createElement('section')
         generate.appendChild(sect)
         let img = document.createElement('img')
@@ -3118,13 +3243,145 @@ btnName.addEventListener('click', () => {
         name.style.textAlign = 'center'
 
         // capital
-        capital.textContent = 'Capital:' + ' ' + c.capital
+        if (c.capital?.length > 1) {
+            capital.textContent = 'Capital:' + ' ' + c.capital
+
+        } else {
+            capital.textContent = ''
+        }
         languages.textContent = 'Languages:' + ' ' + c.languages.join(', ')
         // languages
         languages.style.maxWidth = '10rem'
 
         // population
-        population.textContent = 'Population:' + ' ' + c.population
+        population.textContent = 'Population:' + ' ' + c.population.toLocaleString()
+        //    sect 
+
+        sect.style.width = '11.3rem'
+        sect.style.height = 'auto'
+        sect.style.backgroundColor = 'white'
+        sect.style.padding = '1rem'
+        sect.style.marginBlock = '0.3rem'
+    }
+
+
+})
+
+
+btnCapital.addEventListener('click', () => {
+
+    generate.innerHTML = ''
+    imgcapital.src = './media/up.png'
+
+    countries.sort((a, b) => b.capital?.localeCompare(a.capital))
+    for (const c of countries) {
+        let sect = document.createElement('section')
+        generate.appendChild(sect)
+        let img = document.createElement('img')
+        let name = document.createElement('p')
+        let capital = document.createElement('p')
+        let languages = document.createElement('p')
+        let population = document.createElement('p')
+        sect.appendChild(img)
+        sect.appendChild(name)
+        sect.appendChild(capital)
+        sect.appendChild(languages)
+        sect.appendChild(population)
+
+        // img
+        img.src = c.flag
+        img.style.width = '5rem'
+        img.style.height = '4rem'
+        img.style.display = 'block'
+        img.style.margin = 'auto'
+        img.style.border = '1px solid  #f0ebef'
+        // name
+        name.textContent = c.name?.toUpperCase()
+        name.style.width = '10rem'
+        name.style.color = '#f2a93b'
+        name.style.margin = '1rem 0rem'
+        name.style.textAlign = 'center'
+
+        // capital
+        if (c.capital?.length > 1) {
+            capital.textContent = 'Capital:' + ' ' + c.capital
+
+        } else {
+            capital.textContent = ''
+        }
+        languages.textContent = 'Languages:' + ' ' + c.languages.join(', ')
+        // languages
+        languages.style.maxWidth = '10rem'
+
+        // population
+        population.textContent = 'Population:' + ' ' + c.population.toLocaleString()
+        //    sect 
+
+        sect.style.width = '11.3rem'
+        sect.style.height = 'auto'
+        sect.style.backgroundColor = 'white'
+        sect.style.padding = '1rem'
+        sect.style.marginBlock = '0.3rem'
+    }
+
+
+})
+
+
+
+
+
+btnPopulation.addEventListener('click', () => {
+
+    generate.innerHTML = ''
+    imgpopulation.src = './media/up.png'
+
+    countries.sort((a, b) => {
+        if (a.population > b.population) return 1
+        if (a.population < b.population) return -1
+        return 0
+    })
+    for (const c of countries) {
+        let sect = document.createElement('section')
+        generate.appendChild(sect)
+        let img = document.createElement('img')
+        let name = document.createElement('p')
+        let capital = document.createElement('p')
+        let languages = document.createElement('p')
+        let population = document.createElement('p')
+        sect.appendChild(img)
+        sect.appendChild(name)
+        sect.appendChild(capital)
+        sect.appendChild(languages)
+        sect.appendChild(population)
+
+        // img
+        img.src = c.flag
+        img.style.width = '5rem'
+        img.style.height = '4rem'
+        img.style.display = 'block'
+        img.style.margin = 'auto'
+        img.style.border = '1px solid  #f0ebef'
+        // name
+        name.textContent = c.name?.toUpperCase()
+        name.style.width = '10rem'
+        name.style.color = '#f2a93b'
+        name.style.margin = '1rem 0rem'
+        name.style.textAlign = 'center'
+
+        // capital
+        if (c.capital?.length > 1) {
+            capital.textContent = 'Capital:' + ' ' + c.capital
+
+        } else {
+            capital.textContent = ''
+        }
+        languages.textContent = 'Languages:' + ' ' + c.languages.join(', ')
+        // languages
+        languages.style.maxWidth = '10rem'
+
+        // population
+        population.textContent = 'Population:' + ' ' + c.population.toLocaleString()
         //    sect 
 
         sect.style.width = '11.3rem'
@@ -3185,35 +3442,34 @@ generate2.innerHTML = `  <div class="each" >
         <p>${worldObj.name}</p>
         <aside class="right">
             <p class="center" style="width:${worldObj.population / 129000000}vw"></p>
-            <p>${worldObj.population}</p>
+            <p>${worldObj.population.toLocaleString()}</p>
         </aside>
         </div>`
 for (const t of tenPopSort) {
-    generate2.innerHTML += `  <div class="each" >
+    generate2.innerHTML += `<div class="each" >
         <p>${t.name}</p>
         <aside class="right">
             <p class="center" style="width:${t.population / 129000000}vw"></p>
-            <p>${t.population}</p>
+            <p>${t.population.toLocaleString()}</p>
         </aside>
         </div>`
-    console.log(t.population / 95000000)
 }
 tenpopBtn.addEventListener('click', () => {
     generate2.innerHTML = ''
-    generate2.innerHTML = `  <div class="each" >
+    generate2.innerHTML = `<div class="each" >
         <p>${worldObj.name}</p>
         <aside class="right">
             <p class="center" style="width:${worldObj.population / 129000000}vw"></p>
-            <p>${worldObj.population}</p>
+            <p>${worldObj.population.toLocaleString()}</p>
         </aside>
         </div>`
     discription.textContent = '10 Most populated countries in the world'
     for (const t of tenPopSort) {
-        generate2.innerHTML += `  <div class="each" >
+        generate2.innerHTML += `  <div class="each">
             <p>${t.name}</p>
             <aside class="right">
                 <p class="center" style="width:${t.population / 129000000}vw"></p>
-                <p>${t.population}</p>
+                <p>${t.population.toLocaleString()}</p>
             </aside>
             </div>`
         console.log(t.population / 95000000)
