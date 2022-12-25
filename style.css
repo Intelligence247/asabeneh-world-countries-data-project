@@ -213,6 +213,7 @@ footer {
 .socials {
     display: flex;
     justify-content: space-between;
+    padding-right: 4rem;
 }
 
 .copyright img:nth-child(2) {
@@ -237,7 +238,6 @@ footer {
 
 #upimg {
     background-color: var(--yellow);
-    margin-right: 2rem;
     border-radius: 50%;
     padding: 3px;
     margin-top: 3.3rem;

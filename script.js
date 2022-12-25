@@ -1,4 +1,4 @@
-const countries = [
+const countries_data = [
     {
         "name": "Afghanistan",
         "capital": "Kabul",
@@ -2862,6 +2862,8 @@ const countries = [
         "area": 390757
     }
 ]
+const countries = countries_data.sort((a, b) => a.name.localeCompare(b.name))
+console.log(countries)
 const generate = document.querySelector('#generate')
 const btnName = document.querySelector('#name')
 const btnCapital = document.querySelector('#capital')
@@ -2935,8 +2937,10 @@ for (const c of countries) {
 // Inputs starts here
 let ccc = []
 input.addEventListener('input', () => {
+    let arr = []
     generate.innerHTML = ''
     let length = []
+    generate2.innerHTML = ''
     generate2.innerHTML = `  <div class="each" >
     <p>${worldObj.name}</p>
     <aside class="right">
@@ -2944,6 +2948,7 @@ input.addEventListener('input', () => {
         <p>${worldObj.population}</p>
     </aside>
     </div>`
+
     for (const c of countries) {
         let sect = document.createElement('section')
         generate.appendChild(sect)
@@ -2961,7 +2966,8 @@ input.addEventListener('input', () => {
             sect.appendChild(capital)
             sect.appendChild(languages)
             sect.appendChild(population)
-            ccc.push(c)
+            // ccc.push(c)
+            arr.push(c)
             // img
             img.src = c.flag
             img.style.width = '5rem'
@@ -2985,7 +2991,7 @@ input.addEventListener('input', () => {
             // population
             population.textContent = 'Population:' + ' ' + c.population
             //    sect 
-
+            console.log(input.value.length)
             sect.style.width = '11.3rem'
             sect.style.height = 'auto'
             sect.style.backgroundColor = 'white'
@@ -3001,27 +3007,89 @@ input.addEventListener('input', () => {
             </div>`
 
         } else {
-
             sect.innerHTML = ''
             sect.style.display = 'none'
         }
 
+        ccc = arr.sort((a, b) => b.name.localeCompare(a.name))
+
+
+        btnName.addEventListener('click', () => {
+
+            generate.innerHTML = ''
+            imgname.src = ''
+            imgname.src = './media/up.png'
+
+            for (const c of ccc) {
+                let sect = document.createElement('section')
+                generate.appendChild(sect)
+                let img = document.createElement('img')
+                let name = document.createElement('p')
+                let capital = document.createElement('p')
+                let languages = document.createElement('p')
+                let population = document.createElement('p')
+                sect.appendChild(img)
+                sect.appendChild(name)
+                sect.appendChild(capital)
+                sect.appendChild(languages)
+                sect.appendChild(population)
+
+                // img
+                img.src = c.flag
+                img.style.width = '5rem'
+                img.style.height = '4rem'
+                img.style.display = 'block'
+                img.style.margin = 'auto'
+                img.style.border = '1px solid  #f0ebef'
+                // name
+                name.textContent = c.name?.toUpperCase()
+                name.style.width = '10rem'
+                name.style.color = '#f2a93b'
+                name.style.margin = '1rem 0rem'
+                name.style.textAlign = 'center'
+
+                // capital
+                capital.textContent = 'Capital:' + ' ' + c.capital
+                languages.textContent = 'Languages:' + ' ' + c.languages.join(', ')
+                // languages
+                languages.style.maxWidth = '10rem'
+
+                // population
+                population.textContent = 'Population:' + ' ' + c.population
+                //    sect 
+
+                sect.style.width = '11.3rem'
+                sect.style.height = 'auto'
+                sect.style.backgroundColor = 'white'
+                sect.style.padding = '1rem'
+                sect.style.marginBlock = '0.3rem'
+            }
+
+
+        })
+
+
     }
     satisfaction.textContent = length.length + ' ' + 'countries satisfied the search criteria'
+    discription.textContent = 'World Population'
+
 
 })
 
 
-
-// Name event starts here
 console.log(ccc)
+// Name event starts here
+
+
 btnName.addEventListener('click', () => {
 
     generate.innerHTML = ''
     imgname.src = ''
     imgname.src = './media/up.png'
+    const reversedCountries = countries_data.sort((a, b) => b.name.localeCompare(a.name))
 
-    for (const c of countries.reverse()) {
+
+    for (const c of reversedCountries) {
         let sect = document.createElement('section')
         generate.appendChild(sect)
         let img = document.createElement('img')
@@ -3043,7 +3111,7 @@ btnName.addEventListener('click', () => {
         img.style.margin = 'auto'
         img.style.border = '1px solid  #f0ebef'
         // name
-        name.textContent = c.name.toUpperCase()
+        name.textContent = c.name?.toUpperCase()
         name.style.width = '10rem'
         name.style.color = '#f2a93b'
         name.style.margin = '1rem 0rem'
@@ -3091,6 +3159,7 @@ console.log(tenlang)
 const tenpopBtn = document.querySelector('#tenpop')
 const tenlangBtn = document.querySelector('#tenlang')
 tenlangBtn.addEventListener('click', () => {
+    discription.textContent = '10 Most Spoken languages in the world'
 
     generate2.innerHTML = ''
     for (let i = 0; i < tenlang.length; i++) {
@@ -3138,6 +3207,7 @@ tenpopBtn.addEventListener('click', () => {
             <p>${worldObj.population}</p>
         </aside>
         </div>`
+    discription.textContent = '10 Most populated countries in the world'
     for (const t of tenPopSort) {
         generate2.innerHTML += `  <div class="each" >
             <p>${t.name}</p>
