@@ -1,5 +1,5 @@
 # asabeneh-world-countries-project
-*An implementation of asabeneh-world-countries-project clone with html, css and JavaScript*
+*This is an application built with `HTML`, `CSS` and `JavaScAript`. It contains all the countries in the world, each with its population, name, capital and their spoken languages. You can search with any features which each country has. And below it there's a Bar chart which displays ten most populated countries in the world and ten most spoken languages*
 ## Prequisite
 - Your browser version should be up to date for better experience
 ## Features
